@@ -6,7 +6,7 @@ I've used [rship repo](https://github.com/rambler-digital-solutions/rship) for t
 
 ```bash
 pkondratenko@mac578rds:~/projects/experimental/git-stat-project (*)
-> yarn start -- --folder ~/projects/tmp/rship --after 01.01.2017 --before 01.12.2017                                                                                                                                                                                                     master [06d6163] deleted modified
+> yarn start -- --folder ~/projects/tmp/rship --after 01.01.2017 --before 01.12.2017
 yarn start v0.18.1
 $ node ./script.js --folder /Users/pkondratenko/projects/tmp/rship --after 01.01.2017 --before 01.12.2017
 
