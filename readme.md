@@ -22,7 +22,7 @@ yarn start -- --folder ~/projects/project --after 01.01.2017 --before 01.12.2017
 I've used [rship repo](https://github.com/rambler-digital-solutions/rship) for this example.
 ```bash
 pkondratenko@mac578rds:~/projects/experimental/git-stat-project
-> yarn start -- --folder ~/projects/tmp/rship --after 01.01.2017 --before 01.12.2017                                                                                                                                                                                                            master [8da9a65] untracked
+> yarn start -- --folder ~/projects/tmp/rship --after 01.01.2017 --before 01.12.2017
 yarn start v0.18.1
 $ NODE_PATH=$(pwd) node ./index.js --folder /Users/pkondratenko/projects/tmp/rship --after 01.01.2017 --before 01.12.2017
 
