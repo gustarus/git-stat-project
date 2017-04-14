@@ -11,12 +11,16 @@ if (!folder) {
 
 const git = new Git({folder});
 git.stat(after, before).then(collection => {
+  if (!Object.keys(collection).length) {
+    throw new Error('There is no history for this project. May be the folder is incorrect?');
+  }
+
   return reports.map(Report => {
     const report = new Report({collection});
     return report.generate();
   });
 }).then(blocks => {
   console.log('\n' + blocks.join('\n') + '\n');
+}).catch(error => {
+  console.error(error);
 });
-
-
