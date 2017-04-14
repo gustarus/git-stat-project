@@ -1,18 +1,10 @@
 'use strict';
 
 const chalk = require('chalk');
+const Base = require('./base');
+const {padLeft, padRight} = require('./../../helpers');
 
-module.exports = class {
-
-  constructor(options) {
-    this.configure(options);
-  }
-
-  configure(options) {
-    for (let i in options) {
-      this[i] = options[i];
-    }
-  }
+module.exports = class extends Base {
 
   calculate(property) {
     const records = this.collection;
@@ -36,22 +28,7 @@ module.exports = class {
     return {collection, min, max};
   }
 
-  colorize(text, percents) {
-    if (percents < 100 / 3) {
-      return chalk.red(text);
-    } else if (percents < 100 / 2) {
-      return chalk.yellow(text);
-    } else {
-      return text;
-    }
-  }
-
-  table(title, header, data) {
-    const rows = data.map(row => '  ' + row.join('  '));
-    return `${chalk.blue(title)}\n${'  ' + chalk.bold(header.join('  '))}\n${rows.join('\n')}`;
-  }
-
-  progress(value, length) {
-    return '█'.repeat(value) + '░'.repeat(length - value);
+  generate() {
+    throw new Error('You have to override this method');
   }
 };

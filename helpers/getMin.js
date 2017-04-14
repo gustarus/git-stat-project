@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = function(defaults, value) {
-  return defaults === false || value < defaults ? value : defaults;
+  return typeof defaults !== 'number' || value < defaults ? value : defaults;
 };

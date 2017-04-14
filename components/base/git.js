@@ -2,18 +2,9 @@
 
 const exec = require('child_process').exec;
 const moment = require('moment');
+const Base = require('./base');
 
-module.exports = class {
-
-  constructor(options) {
-    this.configure(options);
-  }
-
-  configure(options) {
-    for (let i in options) {
-      this[i] = options[i];
-    }
-  }
+module.exports = class extends Base {
 
   compileDateFilter(name, value) {
     if (!value) {
