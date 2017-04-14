@@ -45,7 +45,7 @@ This code u can find in [script.js](script.js).
 ```javascript
 'use strict';
 
-const {Git, TotalReport, CommitsReport} = require('./index');
+const {Git, TotalReport, CommitsReport} = require('git-stat-project');
 const argv = require('yargs').argv;
 const {folder, after, before} = argv;
 const reports = [TotalReport, CommitsReport];
