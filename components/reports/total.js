@@ -1,7 +1,7 @@
 'use strict';
 
-const {getMax, padRight, padLeft} = require('helpers');
-const Report = require('components/base/report');
+const {getMax, padRight, padLeft} = require('./../../helpers');
+const Report = require('./../base/report');
 
 const COMMITS_K = 0.4;
 const PROGRESS_LENGTH = 40;

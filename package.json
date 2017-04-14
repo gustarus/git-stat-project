@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_PATH=$(pwd) node ./index.js"
+    "start": "node ./script.js"
   },
   "author": "Pavel Kondratenko",
   "license": "ISC",
