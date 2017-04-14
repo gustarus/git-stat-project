@@ -1,4 +1,5 @@
-## Project git stat
+## Git project stat
+A tool for git projects statistics generation per every user.
 
 ### Installation
 #### 1. Use needed node.js version
