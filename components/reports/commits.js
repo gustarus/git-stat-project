@@ -7,17 +7,20 @@ const Table = require('./../base/table');
 module.exports = class extends Report {
 
   generate() {
-    const history = this.calculate('commitsPushed');
-    return Object.values(history.collection).map(record => ([
+    const collection = this.calculate('commitsPushed').collection;
+    return Object.values(collection);
+  }
+
+  render(records) {
+    const title = 'Commits rating';
+    const header = ['User name', 'Percents value', 'Commits pushed'];
+
+    const data = records.map(record => ([
       {type: 'string', value: record.email},
       {type: 'progress', value: record.percents},
       {type: 'number', value: record.commitsPushed}
     ]));
-  }
 
-  render(data) {
-    const title = 'Commits rating';
-    const header = ['User name', 'Percents value', 'Commits pushed'];
     const table = new Table({title, header, data});
     return table.render();
   }

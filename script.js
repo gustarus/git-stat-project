@@ -17,8 +17,8 @@ git.stat(after, before).then(collection => {
 
   return reports.map(Report => {
     const report = new Report({collection});
-    const data = report.generate();
-    return report.render(data);
+    const records = report.generate();
+    return report.render(records);
   });
 }).then(blocks => {
   console.log('\n' + blocks.join('\n\n') + '\n');

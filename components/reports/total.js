@@ -32,17 +32,20 @@ module.exports = class extends Report {
       return Object.assign({}, record, {percents});
     }).sort((a, b) => b.percents - a.percents);
 
-    return formatted.map(record => ([
+    return formatted;
+  }
+
+  render(records) {
+    const title = 'Total rating';
+    const header = ['User name', 'Percents value', 'Commits pushed', 'Lines affected'];
+
+    const data = records.map(record => ([
       {type: 'string', value: record.email},
       {type: 'progress', value: record.percents},
       {type: 'number', value: record.commitsPushed},
       {type: 'number', value: record.linesAffected}
     ]));
-  }
 
-  render(data) {
-    const title = 'Total rating';
-    const header = ['User name', 'Percents value', 'Commits pushed', 'Lines affected'];
     const table = new Table({title, header, data});
     return table.render();
   }
