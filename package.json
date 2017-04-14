@@ -1,0 +1,19 @@
+{
+  "name": "get-stat-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_PATH=$(pwd) node ./index.js"
+  },
+  "author": "Pavel Kondratenko",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "1.1.3",
+    "fs": "0.0.1-security",
+    "moment": "^2.18.1",
+    "request": "2.79.0",
+    "request-promise": "4.1.1",
+    "yargs": "^7.0.2"
+  }
+}
