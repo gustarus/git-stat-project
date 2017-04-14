@@ -37,12 +37,12 @@ Done in 0.30s.
 git clone git@github.com:gustarus/git-stat-project.git && cd git-stat-project
 ```
 
-#### 1. Use needed node.js version
+#### 2. Use needed node.js version
 ```bash
 nvm use
 ```
 
-#### 2. Install dependencies
+#### 3. Install dependencies
 ```bash
 yarn
 ```
