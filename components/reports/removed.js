@@ -5,8 +5,8 @@ const PropertyReport = require('./property');
 module.exports = class extends PropertyReport {
 
   constructor(options = {}) {
-    options.property = 'commitsPushed';
-    options.title = 'Commits pushed';
+    options.property = 'linesRemoved';
+    options.title = 'Lines removed';
     super(options);
   }
 };

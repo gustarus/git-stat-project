@@ -1,9 +1,9 @@
 'use strict';
 
-const {Git, TotalReport, CommitsReport} = require('./index');
+const {Git, TotalReport, CommitsReport, LinesAffectedReport} = require('./index');
 const argv = require('yargs').argv;
 const {folder, after, before} = argv;
-const reports = [TotalReport, CommitsReport];
+const reports = [TotalReport, CommitsReport, LinesAffectedReport];
 
 if (!folder) {
   throw new Error('You have to pass `--folder` (via `yarn start -- ---folder path/to/folder` where git project is.');
