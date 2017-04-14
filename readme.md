@@ -1,6 +1,34 @@
 ## Git project stat
 A tool for git projects statistics generation per every user.
 
+### What does the result look like?
+I've used [rship repo](https://github.com/rambler-digital-solutions/rship) for this example.
+
+```bash
+pkondratenko@mac578rds:~/projects/experimental/git-stat-project (*)
+> yarn start -- --folder ~/projects/tmp/rship --after 01.01.2017 --before 01.12.2017                                                                                                                                                                                                     master [06d6163] deleted modified
+yarn start v0.18.1
+$ node ./script.js --folder /Users/pkondratenko/projects/tmp/rship --after 01.01.2017 --before 01.12.2017
+
+Total rating
+  User name                                Percents value                     Commits pushed  Lines affected
+  m.chernobrov@rambler-co.ru               █████████████████████████████████              16             691
+  abietis@gmail.com                        █████░░░░░░░░░░░░░░░░░░░░░░░░░░░░               3              63
+  me@mrsum.ru                              ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               2              20
+  mrsum@mrsum.local                        █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1               4
+  a-ignatov-parc@users.noreply.github.com  █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1               0
+
+Commits rating
+  User name                                Percents value                     Commits pushed
+  m.chernobrov@rambler-co.ru               █████████████████████████████████              16
+  abietis@gmail.com                        ███████░░░░░░░░░░░░░░░░░░░░░░░░░░               3
+  me@mrsum.ru                              █████░░░░░░░░░░░░░░░░░░░░░░░░░░░░               2
+  a-ignatov-parc@users.noreply.github.com  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1
+  mrsum@mrsum.local                        ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1
+
+Done in 0.30s.
+```
+
 
 ### Installation as separate project
 
@@ -72,32 +100,4 @@ git.stat(after, before).then(collection => {
 });
 
 
-```
-
-#### What does the result look like?
-I've used [rship repo](https://github.com/rambler-digital-solutions/rship) for this example.
-
-```bash
-pkondratenko@mac578rds:~/projects/experimental/git-stat-project (*)
-> yarn start -- --folder ~/projects/tmp/rship --after 01.01.2017 --before 01.12.2017                                                                                                                                                                                                     master [06d6163] deleted modified
-yarn start v0.18.1
-$ node ./script.js --folder /Users/pkondratenko/projects/tmp/rship --after 01.01.2017 --before 01.12.2017
-
-Total rating
-  User name                                Percents value                     Commits pushed  Lines affected
-  m.chernobrov@rambler-co.ru               █████████████████████████████████              16             691
-  abietis@gmail.com                        █████░░░░░░░░░░░░░░░░░░░░░░░░░░░░               3              63
-  me@mrsum.ru                              ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               2              20
-  mrsum@mrsum.local                        █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1               4
-  a-ignatov-parc@users.noreply.github.com  █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1               0
-
-Commits rating
-  User name                                Percents value                     Commits pushed
-  m.chernobrov@rambler-co.ru               █████████████████████████████████              16
-  abietis@gmail.com                        ███████░░░░░░░░░░░░░░░░░░░░░░░░░░               3
-  me@mrsum.ru                              █████░░░░░░░░░░░░░░░░░░░░░░░░░░░░               2
-  a-ignatov-parc@users.noreply.github.com  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1
-  mrsum@mrsum.local                        ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1
-
-Done in 0.30s.
 ```
