@@ -1,15 +1,17 @@
 'use strict';
 
-const {Git, TotalReport, CommitsReport, LinesAffectedReport} = require('./index');
 const argv = require('yargs').argv;
 const {folder, after, before} = argv;
-const reports = [TotalReport, CommitsReport, LinesAffectedReport];
+
+const components = require('./index');
+const {GitProject, GeneralReport, CommitsReport, LinesAffectedReport, LinesDiffReport} = components;
+const reports = [GeneralReport, CommitsReport, LinesAffectedReport, LinesDiffReport];
 
 if (!folder) {
   throw new Error('You have to pass `--folder` (via `yarn start -- ---folder path/to/folder` where git project is.');
 }
 
-const git = new Git({folder});
+const git = new GitProject({folder, verbose: true});
 git.stat(after, before).then(collection => {
   if (!Object.keys(collection).length) {
     throw new Error('There is no history for this project. May be the folder is incorrect?');

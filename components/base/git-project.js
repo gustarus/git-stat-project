@@ -3,8 +3,17 @@
 const exec = require('child_process').exec;
 const moment = require('moment');
 const Base = require('./base');
+const Log = require('./log');
 
+const log = new Log();
 module.exports = class extends Base {
+
+  constructor(options) {
+    super(Object.assign({
+      folder: null,
+      verbose: false
+    }, options));
+  }
 
   compileDateFilter(name, value) {
     if (!value) {
@@ -28,6 +37,11 @@ module.exports = class extends Base {
     return new Promise((resolve, reject) => {
       const git = this.compileLogCommand(this.folder, after, before);
       const command = `${git} --format='%aE' | sort -u | while read name; do echo "{\\\"email\\\": \\\"$name\\\", "; ${git} --author="$name" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "\\\"added\\\": \\\"%s\\\", \\\"removed\\\": \\\"%s\\\", \\\"diff\\\": \\\"%s\\\"};", add, subs, loc }' -; done`;
+
+      if (this.verbose) {
+        log.warning('\nExecute git lines stat command');
+        log.info(command, 1);
+      }
 
       exec(command, (error, stdout) => {
         if (error) {
@@ -58,6 +72,11 @@ module.exports = class extends Base {
     return new Promise((resolve, reject) => {
       const git = this.compileLogCommand(this.folder, after, before);
       const command = `${git} --pretty=format:"%aE"| env LC_ALL=C sort| env LC_ALL=C uniq -c| env LC_ALL=C sort -r`;
+
+      if (this.verbose) {
+        log.warning('\nExecute git commits stat command');
+        log.info(command, 1);
+      }
 
       exec(command, (error, stdout) => {
         if (error) {
