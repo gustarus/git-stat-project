@@ -18,9 +18,11 @@ module.exports = class extends Base {
     const max = sorted[0][property];
 
     // calculate percents values and build a result
-    const k = 100 / max;
+    const highest = max > Math.abs(min) ? max : Math.abs(min);
+    const k = 100 / highest;
     const collection = sorted.reduce((stack, item) => {
-      const percents = item[property] * k || 0;
+      const direction = (item[property] >= 0 ? 1 : -1);
+      const percents = Math.abs(item[property]) * k * direction;
       stack[item.id] = Object.assign({}, item, {percents});
       return stack;
     }, {});
