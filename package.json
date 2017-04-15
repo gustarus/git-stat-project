@@ -1,11 +1,12 @@
 {
   "name": "git-stat-project",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node ./script.js"
   },
+  "keywords": ["git", "stat", "statistics", "vcs"],
   "author": "Pavel Kondratenko",
   "license": "ISC",
   "dependencies": {
