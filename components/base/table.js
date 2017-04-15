@@ -76,7 +76,7 @@ module.exports = class extends Base {
   getCellValue(cell, size) {
     switch (cell.type) {
       case 'progress':
-        const length = Math.ceil(this.progressSize / 100 * cell.value);
+        const length = Math.round(this.progressSize / 100 * cell.value);
         return this.getProgress(this.progressSize, length, this.progressDirection);
 
         break;
