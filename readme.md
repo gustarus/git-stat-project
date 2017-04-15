@@ -81,7 +81,10 @@ This code u can find in [script.js](script.js).
 ```javascript
 'use strict';
 
-const {Git, TotalReport, CommitsReport} = require('git-stat-project');
+const argv = require('yargs').argv;
+const {folder, after, before} = argv;
+
+const components = require('git-stat-project');
 const {Log, GitProject, CommitsReport, LinesAffectedReport, LinesDiffReport} = components;
 const reports = [CommitsReport, LinesAffectedReport, LinesDiffReport];
 
@@ -103,4 +106,5 @@ git.stat(after, before).then(collection => {
   log.error(`\n${error.stack}\n`);
   process.exit(1);
 });
+
 ```
