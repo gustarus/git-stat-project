@@ -6,27 +6,35 @@ I've used [rship repo](https://github.com/rambler-digital-solutions/rship) for t
 
 ```bash
 pkondratenko@mac578rds:~/projects/experimental/git-stat-project (*)
-> yarn start -- --folder ~/projects/tmp/rship --after 01.01.2017 --before 01.12.2017
+> yarn start -- --folder ~/projects/tmp/rship --after 01.01.2017 --before 31.12.2017                                                                                               refactoring/change-components-hierarchy [55cce1e] modified
 yarn start v0.18.1
-$ node ./script.js --folder /Users/pkondratenko/projects/tmp/rship --after 01.01.2017 --before 01.12.2017
+$ node ./script.js --folder /Users/pkondratenko/projects/tmp/rship --after 01.01.2017 --before 31.12.2017
 
-Total rating
-  User name                                Percents value                     Commits pushed  Lines affected
-  m.chernobrov@rambler-co.ru               █████████████████████████████████              16             691
-  abietis@gmail.com                        █████░░░░░░░░░░░░░░░░░░░░░░░░░░░░               3              63
-  me@mrsum.ru                              ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               2              20
-  mrsum@mrsum.local                        █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1               4
-  a-ignatov-parc@users.noreply.github.com  █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1               0
+Commits pushed report
+  User name                                Total value ratio                                   Count
+  m.chernobrov@rambler-co.ru               |██████████████████████████████████████████████████     16
+  abietis@gmail.com                        |█████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░      3
+  me@mrsum.ru                              |██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░      2
+  a-ignatov-parc@users.noreply.github.com  |███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░      1
+  mrsum@mrsum.local                        |███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░      1
 
-Commits rating
-  User name                                Percents value                     Commits pushed
-  m.chernobrov@rambler-co.ru               █████████████████████████████████              16
-  abietis@gmail.com                        ███████░░░░░░░░░░░░░░░░░░░░░░░░░░               3
-  me@mrsum.ru                              █████░░░░░░░░░░░░░░░░░░░░░░░░░░░░               2
-  a-ignatov-parc@users.noreply.github.com  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1
-  mrsum@mrsum.local                        ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░               1
+Lines affected report (added plus removed)
+  User name                                Total value ratio                                   Count
+  m.chernobrov@rambler-co.ru               |██████████████████████████████████████████████████    691
+  abietis@gmail.com                        |█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     63
+  me@mrsum.ru                              |█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     20
+  mrsum@mrsum.local                        |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░      4
+  a-ignatov-parc@users.noreply.github.com  |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░      0
 
-Done in 0.30s.
+Lines diff report (added minus removed)
+  User name                                Total value ratio                                   Count
+  a-ignatov-parc@users.noreply.github.com  ░░░░░░░░░░░░░░░░░░░░░░░░░|░░░░░░░░░░░░░░░░░░░░░░░░░      0
+  me@mrsum.ru                              ░░░░░░░░░░░░░░░░░░░░░░░░░|░░░░░░░░░░░░░░░░░░░░░░░░░      0
+  mrsum@mrsum.local                        ░░░░░░░░░░░░░░░░░░░░░░░░░|░░░░░░░░░░░░░░░░░░░░░░░░░      0
+  m.chernobrov@rambler-co.ru               ░░░░█████████████████████|░░░░░░░░░░░░░░░░░░░░░░░░░    -33
+  abietis@gmail.com                        █████████████████████████|░░░░░░░░░░░░░░░░░░░░░░░░░    -39
+
+Done in 0.33s.
 ```
 
 
@@ -74,15 +82,11 @@ This code u can find in [script.js](script.js).
 'use strict';
 
 const {Git, TotalReport, CommitsReport} = require('git-stat-project');
-const argv = require('yargs').argv;
-const {folder, after, before} = argv;
-const reports = [TotalReport, CommitsReport];
+const {Log, GitProject, CommitsReport, LinesAffectedReport, LinesDiffReport} = components;
+const reports = [CommitsReport, LinesAffectedReport, LinesDiffReport];
 
-if (!folder) {
-  throw new Error('You have to pass `--folder` (via `yarn start -- ---folder path/to/folder` where git project is.');
-}
-
-const git = new Git({folder});
+const log = new Log();
+const git = new GitProject({folder});
 git.stat(after, before).then(collection => {
   if (!Object.keys(collection).length) {
     throw new Error('There is no history for this project. May be the folder is incorrect?');
@@ -94,10 +98,9 @@ git.stat(after, before).then(collection => {
     return report.render(records);
   });
 }).then(blocks => {
-  console.log('\n' + blocks.join('\n\n') + '\n');
+  log.info('\n' + blocks.join('\n\n') + '\n');
 }).catch(error => {
-  console.error(error);
+  log.error(`\n${error.stack}\n`);
+  process.exit(1);
 });
-
-
 ```

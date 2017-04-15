@@ -4,11 +4,11 @@ const argv = require('yargs').argv;
 const {folder, after, before} = argv;
 
 const components = require('./index');
-const {Log, GitProject, GeneralReport, CommitsReport, LinesAffectedReport, LinesDiffReport} = components;
-const reports = [GeneralReport, CommitsReport, LinesAffectedReport, LinesDiffReport];
+const {Log, GitProject, CommitsReport, LinesAffectedReport, LinesDiffReport} = components;
+const reports = [CommitsReport, LinesAffectedReport, LinesDiffReport];
 
 const log = new Log();
-const git = new GitProject({folder, verbose: true});
+const git = new GitProject({folder});
 git.stat(after, before).then(collection => {
   if (!Object.keys(collection).length) {
     throw new Error('There is no history for this project. May be the folder is incorrect?');
