@@ -36,8 +36,8 @@ module.exports = class extends Report {
   }
 
   render(records) {
-    const title = 'Total rating';
-    const header = ['User name', 'Percents value', 'Commits pushed', 'Lines affected'];
+    const title = 'General report - commits pushed and lines affected ratio';
+    const header = ['User name', 'Percents value', 'Commits', 'Lines'];
 
     const data = records.map(record => ([
       {type: 'string', value: record.email},

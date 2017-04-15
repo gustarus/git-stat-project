@@ -11,8 +11,8 @@ module.exports = class extends Report {
   }
 
   render(records) {
-    const title = this.tableTitle;
-    const header = ['User name', 'Percents value', this.columnTitle];
+    const {tableTitle, columnTitle, progressSize, progressDirection} = this;
+    const header = ['User name', 'Total value ratio', columnTitle];
 
     const data = records.map(record => ([
       {type: 'string', value: record.email},
@@ -20,7 +20,13 @@ module.exports = class extends Report {
       {type: 'number', value: record[this.key]}
     ]));
 
-    const table = new Table({title, header, data});
+    const table = new Table({
+      title: tableTitle,
+      header, data,
+      progressSize,
+      progressDirection
+    });
+
     return table.render();
   }
 };

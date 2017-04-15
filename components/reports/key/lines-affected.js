@@ -1,11 +1,12 @@
 'use strict';
 
+const {merge} = require('./../../../helpers');
 const KeyReport = require('./../../base/key-report');
 
 module.exports = class extends KeyReport {
 
   constructor(options) {
-    super(Object.assign({
+    super(merge({
       key: 'linesAffected',
       tableTitle: 'Lines affected report (added plus removed)',
       columnTitle: 'Count'

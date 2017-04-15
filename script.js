@@ -4,13 +4,10 @@ const argv = require('yargs').argv;
 const {folder, after, before} = argv;
 
 const components = require('./index');
-const {GitProject, GeneralReport, CommitsReport, LinesAffectedReport, LinesDiffReport} = components;
+const {Log, GitProject, GeneralReport, CommitsReport, LinesAffectedReport, LinesDiffReport} = components;
 const reports = [GeneralReport, CommitsReport, LinesAffectedReport, LinesDiffReport];
 
-if (!folder) {
-  throw new Error('You have to pass `--folder` (via `yarn start -- ---folder path/to/folder` where git project is.');
-}
-
+const log = new Log();
 const git = new GitProject({folder, verbose: true});
 git.stat(after, before).then(collection => {
   if (!Object.keys(collection).length) {
@@ -23,7 +20,8 @@ git.stat(after, before).then(collection => {
     return report.render(records);
   });
 }).then(blocks => {
-  console.log('\n' + blocks.join('\n\n') + '\n');
+  log.info('\n' + blocks.join('\n\n') + '\n');
 }).catch(error => {
-  console.error(error);
+  log.error(`\n${error.stack}\n`);
+  process.exit(1);
 });

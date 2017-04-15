@@ -2,6 +2,7 @@
 
 // base components
 module.exports.Base = require('./components/base/base');
+module.exports.Log = require('./components/base/log');
 module.exports.GitProject = require('./components/base/git-project');
 module.exports.Report = require('./components/base/report');
 module.exports.KeyReport = require('./components/base/key-report');

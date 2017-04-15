@@ -8,7 +8,9 @@ module.exports = class {
 
   configure(options) {
     for (let i in options) {
-      this[i] = options[i];
+      if (typeof options[i] !== 'undefined') {
+        this[i] = options[i];
+      }
     }
   }
 };
