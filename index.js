@@ -1,5 +1,3 @@
-'use strict';
-
 // helpers
 module.exports.helpers = require('./helpers');
 

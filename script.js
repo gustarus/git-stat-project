@@ -1,5 +1,3 @@
-'use strict';
-
 const stat = require('./index');
 const {helpers, Log, GitProject, CommitsReport, LinesAffectedReport, LinesDiffReport} = stat;
 const {getArgv} = helpers;

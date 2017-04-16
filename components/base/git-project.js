@@ -1,5 +1,3 @@
-'use strict';
-
 const exec = require('child_process').exec;
 const fs = require('fs');
 const Base = require('./base');

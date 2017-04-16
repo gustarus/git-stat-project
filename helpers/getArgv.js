@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function(raw) {
   let result = {};
   let clone = raw.slice();

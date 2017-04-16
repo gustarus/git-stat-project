@@ -1,5 +1,3 @@
-'use strict';
-
 const chalk = require('chalk');
 const Base = require('./base');
 const {padLeft, padRight} = require('./../../helpers');

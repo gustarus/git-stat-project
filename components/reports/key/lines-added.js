@@ -1,5 +1,3 @@
-'use strict';
-
 const {merge} = require('./../../../helpers');
 const KeyReport = require('./../../base/key-report');
 

@@ -1,4 +1,3 @@
-'use strict';
 module.exports.merge = require('./merge');
 module.exports.getArgv = require('./getArgv');
 module.exports.getMax = require('./getMax');

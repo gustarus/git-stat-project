@@ -1,5 +1,3 @@
-'use strict';
-
 const {getMax} = require('./../../helpers');
 const Report = require('./../base/report');
 const Table = require('./../base/table');

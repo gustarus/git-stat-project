@@ -1,5 +1,3 @@
-'use strict';
-
 const Report = require('./report');
 const Table = require('./table');
 
