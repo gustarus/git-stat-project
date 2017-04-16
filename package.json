@@ -1,6 +1,6 @@
 {
   "name": "git-stat-project",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,14 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/gustarus/git-stat-project.git"
   },
-  "keywords": ["git", "stat", "statistics", "vcs"],
+  "keywords": [
+    "git",
+    "stat",
+    "statistics",
+    "vcs"
+  ],
   "author": "Pavel Kondratenko",
   "license": "ISC",
   "dependencies": {
     "chalk": "1.1.3",
     "child_process": "1.0.2",
-    "fs": "^0.0.1-security",
-    "moment": "2.18.1",
+    "fs": "0.0.1-security",
     "yargs": "7.0.2"
   }
 }

@@ -38,6 +38,10 @@ Done in 0.33s.
 ```
 
 
+### Requirements
+If you want to use this in your console, you need to use `node.js` >= `7.1`.
+
+
 ### Installation as separate project
 
 #### 1. Clone the repo

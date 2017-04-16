@@ -2,7 +2,6 @@
 
 const exec = require('child_process').exec;
 const fs = require('fs');
-const moment = require('moment');
 const Base = require('./base');
 const Log = require('./log');
 const {merge} = require('./../../helpers');
@@ -22,7 +21,12 @@ module.exports = class extends Base {
       return '';
     }
 
-    return `--${name}="${moment(value, 'DD.MM.YYYY').format('YYYY-MM-DD')}"`;
+    if (!value.match(/^\d{2}.\d{2}.\d{4}$/)) {
+      throw new Error(`Incorrect input date format for \'${name}\' argument: received \'${value}\', but \'DD.MM.YYYY\' was expected.`);
+    }
+
+    const [day, month, year] = value.split('.');
+    return `--${name}="${year}-${month}-${day}"`;
   }
 
   compileLogCommand(folder, after, before) {
@@ -66,7 +70,7 @@ module.exports = class extends Base {
           const linesAffected = linesAdded + Math.abs(linesRemoved);
           const linesDiff = parseInt(item.diff || 0);
 
-          stack[email] = {linesAdded, linesRemoved, linesAffected, linesDiff};
+          stack[email] = { linesAdded, linesRemoved, linesAffected, linesDiff };
           return stack;
         }, {});
 
@@ -94,7 +98,7 @@ module.exports = class extends Base {
           const [countRaw, emailRaw] = record.trim().replace(/\s+/, ';').split(';');
           const email = emailRaw || 'incognito';
           const commitsPushed = countRaw ? parseInt(countRaw) : 0;
-          stack[email] = {commitsPushed};
+          stack[email] = { commitsPushed };
           return stack;
         }, {});
 
@@ -104,7 +108,7 @@ module.exports = class extends Base {
   }
 
   stat(after = null, before = null) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       if (!this.folder) {
         throw new Error('You have to pass \'folder\' property to this class in the constructor.');
       }
@@ -118,12 +122,12 @@ module.exports = class extends Base {
           let result = {};
           for (let email in linesStory) {
             const id = email;
-            result[id] = Object.assign({}, linesStory[email], commitsStory[email], {id, email});
+            result[id] = Object.assign({}, linesStory[email], commitsStory[email], { id, email });
           }
 
           resolve(result);
-        });
-      });
+        }).catch(reject);
+      }).catch(reject);
     });
   }
 };
