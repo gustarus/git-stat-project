@@ -65,9 +65,7 @@ npm i
 ```
 
 
-### Usage
-
-#### How you can use this via console?
+### How you can use this via console?
 Clone and install this project and then type in console from this project dir:
 
 ```bash
@@ -79,7 +77,8 @@ Or via npm:
 npm start -- --folder ~/projects/project --after 01.01.2017 --before 01.12.2017
 ```
 
-#### How you can use this in your project?
+
+### How you can use this in your project?
 This code u can find in [script.js](script.js).
 
 ```javascript
@@ -110,5 +109,102 @@ git.stat(after, before).then(collection => {
   log.error(`\n${error.stack}\n`);
   process.exit(1);
 });
+```
 
+
+### Which kinds of reports do you have?
+Each report can be required with the following syntax (where `collection` - git statistic results from `GitProject` instance):
+```javascript
+const {GeneralReport} = require('git-stat-project');
+const report = new Report({collection});
+const records = report.generate();
+return report.render(records);
+```
+
+#### GeneralReport
+```bash
+General report - commits pushed and lines affected ratio
+  User name                                Percents value                                       Commits  Lines
+  m.chernobrov@rambler-co.ru               |██████████████████████████████████████████████████       16    691
+  abietis@gmail.com                        |██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        3     63
+  me@mrsum.ru                              |███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        2     20
+  mrsum@mrsum.local                        |█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        1      4
+  a-ignatov-parc@users.noreply.github.com  |█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        1      0
+```
+
+#### CommitsReport
+```bash
+Commits pushed report
+  User name                                Total value ratio                                    Commits
+  m.chernobrov@rambler-co.ru               |██████████████████████████████████████████████████       16
+  abietis@gmail.com                        |█████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        3
+  me@mrsum.ru                              |██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        2
+  a-ignatov-parc@users.noreply.github.com  |███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        1
+  mrsum@mrsum.local                        |███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        1
+```
+
+#### LinesAddedReport
+```bash
+Lines added report
+  User name                                Total value ratio                                    Added
+  m.chernobrov@rambler-co.ru               |██████████████████████████████████████████████████    329
+  abietis@gmail.com                        |██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     12
+  me@mrsum.ru                              |██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     10
+  mrsum@mrsum.local                        |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░      2
+  a-ignatov-parc@users.noreply.github.com  |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░      0
+```
+
+#### LinesRemovedReport
+```bash
+Lines removed report
+  User name                                Total value ratio                                    Removed
+  m.chernobrov@rambler-co.ru               |██████████████████████████████████████████████████      362
+  abietis@gmail.com                        |███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░       51
+  me@mrsum.ru                              |█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░       10
+  mrsum@mrsum.local                        |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        2
+  a-ignatov-parc@users.noreply.github.com  |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        0
+```
+
+#### LinesDiffReport
+```bash
+Lines diff report (added minus removed)
+  User name                                Total value ratio                                    Diff
+  a-ignatov-parc@users.noreply.github.com  ░░░░░░░░░░░░░░░░░░░░░░░░░|░░░░░░░░░░░░░░░░░░░░░░░░░     0
+  me@mrsum.ru                              ░░░░░░░░░░░░░░░░░░░░░░░░░|░░░░░░░░░░░░░░░░░░░░░░░░░     0
+  mrsum@mrsum.local                        ░░░░░░░░░░░░░░░░░░░░░░░░░|░░░░░░░░░░░░░░░░░░░░░░░░░     0
+  m.chernobrov@rambler-co.ru               ░░░░█████████████████████|░░░░░░░░░░░░░░░░░░░░░░░░░   -33
+  abietis@gmail.com                        █████████████████████████|░░░░░░░░░░░░░░░░░░░░░░░░░   -39
+```
+
+#### LinesAffectedReport
+```bash
+Lines affected report (added plus removed)
+  User name                                Total value ratio                                    Affected
+  m.chernobrov@rambler-co.ru               |██████████████████████████████████████████████████       691
+  abietis@gmail.com                        |█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        63
+  me@mrsum.ru                              |█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░        20
+  mrsum@mrsum.local                        |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         4
+  a-ignatov-parc@users.noreply.github.com  |░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         0
+```
+
+
+### What does the module export?
+```javascript
+// base components
+module.exports.Base = require('./components/base/base');
+module.exports.Log = require('./components/base/log');
+module.exports.GitProject = require('./components/base/git-project');
+module.exports.Report = require('./components/base/report');
+module.exports.KeyReport = require('./components/base/key-report');
+module.exports.Table = require('./components/base/table');
+
+// key reports
+module.exports.CommitsReport = require('./components/reports/key/commits');
+module.exports.LinesDiffReport = require('./components/reports/key/lines-diff');
+module.exports.LinesAddedReport = require('./components/reports/key/lines-added');
+module.exports.LinesRemovedReport = require('./components/reports/key/lines-removed');
+module.exports.LinesAffectedReport = require('./components/reports/key/lines-affected');
+
+// more complicated reports
+module.exports.GeneralReport = require('./components/reports/general');
 ```
