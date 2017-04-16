@@ -82,13 +82,11 @@ npm start -- --folder ~/projects/project --after 01.01.2017 --before 01.12.2017
 This code u can find in [script.js](script.js).
 
 ```javascript
-'use strict';
+const stat = require('git-stat-project');
+const {helpers, Log, GitProject, CommitsReport, LinesAffectedReport, LinesDiffReport} = stat;
+const {getArgv} = helpers;
 
-const argv = require('yargs').argv;
-const {folder, after, before} = argv;
-
-const components = require('git-stat-project');
-const {Log, GitProject, CommitsReport, LinesAffectedReport, LinesDiffReport} = components;
+const {folder, before, after} = getArgv(process.argv);
 const reports = [CommitsReport, LinesAffectedReport, LinesDiffReport];
 
 const log = new Log();

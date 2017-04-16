@@ -1,10 +1,10 @@
 'use strict';
 
-const argv = require('yargs').argv;
-const {folder, after, before} = argv;
+const stat = require('./index');
+const {helpers, Log, GitProject, CommitsReport, LinesAffectedReport, LinesDiffReport} = stat;
+const {getArgv} = helpers;
 
-const components = require('./index');
-const {Log, GitProject, CommitsReport, LinesAffectedReport, LinesDiffReport} = components;
+const {folder, before, after} = getArgv(process.argv);
 const reports = [CommitsReport, LinesAffectedReport, LinesDiffReport];
 
 const log = new Log();

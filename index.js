@@ -1,5 +1,8 @@
 'use strict';
 
+// helpers
+module.exports.helpers = require('./helpers');
+
 // base components
 module.exports.Base = require('./components/base/base');
 module.exports.Log = require('./components/base/log');
