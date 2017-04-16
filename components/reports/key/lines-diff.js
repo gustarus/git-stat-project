@@ -10,7 +10,7 @@ module.exports = class extends KeyReport {
       key: 'linesDiff',
       progressDirection: 'both',
       tableTitle: 'Lines diff report (added minus removed)',
-      columnTitle: 'Count'
+      columnTitle: 'Diff'
     }, options));
   }
 };

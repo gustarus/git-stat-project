@@ -9,7 +9,7 @@ module.exports = class extends KeyReport {
     super(merge({
       key: 'linesAffected',
       tableTitle: 'Lines affected report (added plus removed)',
-      columnTitle: 'Count'
+      columnTitle: 'Affected'
     }, options));
   }
 };

@@ -38,7 +38,8 @@ module.exports = class extends Base {
   getCellSize(cell) {
     switch (cell.type) {
       case 'progress':
-        return this.progressSize;
+        // +1 because there is '|' symbol in progress bar
+        return this.progressSize + 1;
         break;
 
       default:
