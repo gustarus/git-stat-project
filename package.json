@@ -1,10 +1,14 @@
 {
   "name": "git-stat-project",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node ./script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustarus/git-stat-project.git"
   },
   "keywords": ["git", "stat", "statistics", "vcs"],
   "author": "Pavel Kondratenko",
