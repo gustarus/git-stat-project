@@ -1,6 +1,6 @@
 {
   "name": "git-stat-project",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "",
   "main": "script.js",
   "scripts": {
@@ -16,6 +16,10 @@
     "statistics",
     "vcs"
   ],
+  "bin": {
+    "git-stat-project": "./bin/global.js"
+  },
+  "preferGlobal": true,
   "author": "Pavel Kondratenko",
   "license": "ISC",
   "dependencies": {
