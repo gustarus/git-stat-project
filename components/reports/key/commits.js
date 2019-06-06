@@ -1,4 +1,4 @@
-const {merge} = require('./../../../helpers');
+const { merge } = require('./../../../helpers');
 const KeyReport = require('./../../base/key-report');
 
 module.exports = class extends KeyReport {

@@ -1,4 +1,4 @@
-const {getMax} = require('./../../helpers');
+const { getMax } = require('./../../helpers');
 const Report = require('./../base/report');
 const Table = require('./../base/table');
 
@@ -27,7 +27,7 @@ module.exports = class extends Report {
       // get maximum values
       maxEmailLength = getMax(maxEmailLength, record.email.length);
 
-      return Object.assign({}, record, {percents});
+      return Object.assign({}, record, { percents });
     }).sort((a, b) => b.percents - a.percents);
 
     return formatted;
@@ -38,13 +38,13 @@ module.exports = class extends Report {
     const header = ['User name', 'Percents value', 'Commits', 'Lines'];
 
     const data = records.map(record => ([
-      {type: 'string', value: record.email},
-      {type: 'progress', value: record.percents},
-      {type: 'number', value: record.commitsPushed},
-      {type: 'number', value: record.linesAffected}
+      { type: 'string', value: record.email },
+      { type: 'progress', value: record.percents },
+      { type: 'number', value: record.commitsPushed },
+      { type: 'number', value: record.linesAffected }
     ]));
 
-    const table = new Table({title, header, data});
+    const table = new Table({ title, header, data });
     return table.render();
   }
 };

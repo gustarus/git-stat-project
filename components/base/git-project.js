@@ -2,7 +2,7 @@ const exec = require('child_process').exec;
 const fs = require('fs');
 const Base = require('./base');
 const Log = require('./log');
-const {merge} = require('./../../helpers');
+const { merge } = require('./../../helpers');
 
 const log = new Log();
 module.exports = class extends Base {

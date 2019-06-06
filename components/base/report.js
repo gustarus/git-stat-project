@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const Base = require('./base');
-const {padLeft, padRight} = require('./../../helpers');
+const { padLeft, padRight } = require('./../../helpers');
 
 module.exports = class extends Base {
 
@@ -21,11 +21,11 @@ module.exports = class extends Base {
     const collection = sorted.reduce((stack, item) => {
       const direction = (item[property] >= 0 ? 1 : -1);
       const percents = Math.abs(item[property]) * k * direction;
-      stack[item.id] = Object.assign({}, item, {percents});
+      stack[item.id] = Object.assign({}, item, { percents });
       return stack;
     }, {});
 
-    return {collection, min, max};
+    return { collection, min, max };
   }
 
   generate() {

@@ -1,19 +1,27 @@
 const stat = require('./index');
-const {helpers, Log, GitProject, CommitsReport, LinesAffectedReport, LinesDiffReport} = stat;
-const {getArgv} = helpers;
+const { helpers, Log, GitProject, CommitsReport, LinesDiffReport, LinesAddedReport, LinesRemovedReport, LinesAffectedReport, GeneralReport } = stat;
+const { getArgv } = helpers;
 
-const {folder, before, after} = getArgv(process.argv);
-const reports = [CommitsReport, LinesAffectedReport, LinesDiffReport];
+const { folder, before, after } = getArgv(process.argv);
+const reports = [
+  CommitsReport,
+  LinesDiffReport,
+  LinesAddedReport,
+  LinesRemovedReport,
+  LinesAffectedReport,
+  GeneralReport,
+  GeneralReport,
+];
 
 const log = new Log();
-const git = new GitProject({folder});
+const git = new GitProject({ folder });
 git.stat(after, before).then(collection => {
   if (!Object.keys(collection).length) {
     throw new Error('There is no history for this project. May be the folder is incorrect?');
   }
 
   return reports.map(Report => {
-    const report = new Report({collection});
+    const report = new Report({ collection });
     const records = report.generate();
     return report.render(records);
   });

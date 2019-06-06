@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const Base = require('./base');
-const {merge, padLeft, padRight} = require('./../../helpers');
+const { merge, padLeft, padRight } = require('./../../helpers');
 
 const CHAR_DELIMITER = '|';
 const CHAR_EMPTY = '░';
@@ -91,7 +91,7 @@ module.exports = class extends Base {
   }
 
   render() {
-    const {title, header, data} = this;
+    const { title, header, data } = this;
 
     const sizes = this.getColsSizes(header, data);
 

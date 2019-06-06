@@ -41,6 +41,17 @@ Done in 0.33s.
 ### Requirements
 If you want to use this in your console, you need to use `node.js` >= `7.1`.
 
+### Installation as a global package
+
+#### 1. Install via npm
+```bash
+npm install -g git-stat-project
+```
+
+#### 2. Use through console
+```bash
+git-stat-project --folder ~/projects/project --after 01.01.2017 --before 01.12.2017
+```
 
 ### Installation as separate project
 
@@ -64,8 +75,7 @@ Or via npm:
 npm i
 ```
 
-
-### How you can use this via console?
+#### 4. Use through console
 Clone and install this project and then type in console from this project dir:
 
 ```bash

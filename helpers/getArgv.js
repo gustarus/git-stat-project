@@ -1,4 +1,4 @@
-module.exports = function(raw) {
+module.exports = function (raw) {
   let result = {};
   let clone = raw.slice();
   while (clone.length) {
